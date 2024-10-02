@@ -7,8 +7,13 @@ from .lab.private_key import PrivateKey
 def hash256(m):
     return util.hash256(m)
 
-def to_bytes(data) -> bytes:
-    return bytes(data, 'utf-8')
+def to_bytes(data):
+    if isinstance(data, bytes):
+        return data  # Return if it's already bytes
+    elif isinstance(data, str):
+        return bytes(data, 'utf-8')  # Convert string to bytes
+    else:
+        raise TypeError(f"Unsupported data type {type(data)}, expected str or bytes.")
 
 def to_str(data: bytes) -> str:
     if type(data) is bytes:

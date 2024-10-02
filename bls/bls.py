@@ -15,13 +15,17 @@ def key_gen(seed: bytes) -> Keys:
 def sign(sk: PrivateKey, message: str) -> ec.G2Element:
     if not isinstance(sk, PrivateKey):
         raise TypeError("sk must be of type PrivateKey")
-
     message = utils.to_bytes(message)
-
     signature: ec.G2Element = BasicSchemeMPL.sign(sk, message)
-
     return signature
 
+def aggregateKey(pubKey: List[ec.G1Element]) -> ec.G2Element:
+    aggKeys: ec.G2Element = BasicSchemeMPL.aggregateKey(pubKey)
+    return aggKeys
+
+def aggregateSig(signatures: List[ec.G1Element]) -> ec.G2Element:
+    aggKeys: ec.G2Element = BasicSchemeMPL.aggregateSig(signatures)
+    return aggKeys
 
 def verify(pk: ec.G1Element, message: str, signature: ec.G2Element) -> bool:
     if not isinstance(pk, ec.G1Element):

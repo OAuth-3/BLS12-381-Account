@@ -76,8 +76,12 @@ class BasicSchemeMPL:
         return core_verify_mpl(pk, message, signature, basic_scheme_dst)
 
     @staticmethod
-    def aggregate(signatures: List[JacobianPoint]) -> JacobianPoint:
+    def aggregateSig(signatures: List[JacobianPoint]) -> JacobianPoint:
         return core_aggregate_mpl(signatures)
+    
+    @staticmethod
+    def aggregateKey(pubKey: List[JacobianPoint]) -> JacobianPoint:
+        return core_aggregate_mpl(pubKey)
 
     @staticmethod
     def aggregate_verify(
