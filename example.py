@@ -16,12 +16,12 @@ print('BLS Private Key 2:', utils.export_sk(bls_sk2))
 print('BLS Public Key 2:', utils.export_pk(bls_pk2))
 
 # Generate ecdsa private keys and public keys
-ecdsa_sk1, ecdsa_pk1 = ecdsa.generate_ecdsa_key_pair(seed1)
-ecdsa_sk2, ecdsa_pk2 = ecdsa.generate_ecdsa_key_pair(seed2)
+ecdsa_sk1, ecdsa_pk1 = ecdsa.generate_key_pair(seed1)
+ecdsa_sk2, ecdsa_pk2 = ecdsa.generate_key_pair(seed2)
 
 # Export keys for display purposes
-ecdsa_sk1_hex, ecdsa_pk1_hex = ecdsa.export_ecdsa_keys(ecdsa_sk1, ecdsa_pk1)
-ecdsa_sk2_hex, ecdsa_pk2_hex = ecdsa.export_ecdsa_keys(ecdsa_sk2, ecdsa_pk2)
+ecdsa_sk1_hex, ecdsa_pk1_hex = ecdsa.export_keys(ecdsa_sk1, ecdsa_pk1)
+ecdsa_sk2_hex, ecdsa_pk2_hex = ecdsa.export_keys(ecdsa_sk2, ecdsa_pk2)
 
 print('ECDSA Private Key 1:', ecdsa_sk1_hex)
 print('ECDSA Public Key 1:', ecdsa_pk1_hex)
@@ -29,7 +29,7 @@ print('ECDSA Private Key 2:', ecdsa_sk2_hex)
 print('ECDSA Public Key 2:', ecdsa_pk2_hex)
 
 # Step 2: Sign a message using both private keys
-message = b'Hello, this is a test message'
+message = 'Hello, this is a test message'
 
 # Sign the message with each private key
 sig1 = bls.sign(bls_sk1, message)
