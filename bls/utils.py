@@ -1,8 +1,8 @@
 from datetime import datetime
 
-from .lab import ec
-from .lab import util
-from .lab.private_key import PrivateKey
+from .module import ec
+from .module import util
+from .module.private_key import PrivateKey
 
 def hash256(m):
     return util.hash256(m)

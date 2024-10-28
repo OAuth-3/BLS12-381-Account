@@ -1,12 +1,12 @@
 from collections import namedtuple
 
 from . import utils
-from .lab import ec
+from .module import ec
 from . import groups
-from .lab import fields
-from .lab import pairing
-from .lab.op_swu_g2 import g2_map
-from .lab.schemes import basic_scheme_dst
+from .module import fields
+from .module import pairing
+from .module.op_swu_g2 import g2_map
+from .module.schemes import basic_scheme_dst
 
 delimeter = ';'
 byteorder = 'big'

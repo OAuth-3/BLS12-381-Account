@@ -1,8 +1,8 @@
 from collections import namedtuple
 from typing import List
 from . import utils
-from .lab import ec
-from .lab.schemes import (PrivateKey, BasicSchemeMPL)
+from .module import ec
+from .module.schemes import (PrivateKey, BasicSchemeMPL)
 
 Keys = namedtuple('Keys', ['sk', 'pk'])
 

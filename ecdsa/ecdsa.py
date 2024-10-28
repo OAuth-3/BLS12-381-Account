@@ -1,6 +1,6 @@
 
 import hashlib
-from .lab import SigningKey, SECP256k1
+from .module import SigningKey, SECP256k1
 
 def create_private_key_from_seed(seed: bytes):
     return hashlib.sha256(seed).digest()
