@@ -6,8 +6,14 @@ from .module.schemes import (PrivateKey, BasicSchemeMPL)
 
 Keys = namedtuple('Keys', ['sk', 'pk'])
 
-def key_gen(seed: bytes) -> Keys:
+def keypair_gen_seed(seed: bytes) -> Keys:
     sk: PrivateKey = BasicSchemeMPL.key_gen(seed)
+    pk: ec.G1Element = sk.get_g1()
+
+    return Keys(sk, pk)
+
+def keypair_gen_privatekey(private_key: str) -> Keys:
+    sk: PrivateKey = utils.import_sk(private_key)
     pk: ec.G1Element = sk.get_g1()
 
     return Keys(sk, pk)
