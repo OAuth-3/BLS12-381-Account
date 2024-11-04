@@ -1,4 +1,3 @@
-
 import hashlib
 from .module import SigningKey, SECP256k1
 
