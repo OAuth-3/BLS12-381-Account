@@ -5,6 +5,12 @@ def keypair_gen_seed(seed: bytes):
     public_key = private_key.get_verifying_key()
     return private_key, public_key
 
+def keypair_gen_privatekey(private_key: str):
+    private_key_bytes = bytes.fromhex(private_key)
+    private_key = SigningKey(private_key_bytes)
+    public_key = private_key.get_verifying_key()
+    return private_key, public_key
+
 def export_keys(private_key, public_key):
     private_key_hex = private_key.to_ascii(encoding="hex").decode('utf-8')
     public_key_hex = public_key.to_ascii(encoding="hex").decode('utf-8')
