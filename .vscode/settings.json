@@ -1,0 +1,18 @@
+{
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "cSpell.ignorePaths": ["**/bls/**", "**/ed25519/**", "**/ecdsa_keccak256/**", "**/util/**", ".git"],
+    "cSpell.ignoreWords": ["esbenp", "munak", "keccak", "keypair", "hexlify", "unhexlify", "ripemd", "SECP", "SOLANA"],
+    "better-comments.tags": [
+        { "tag": "~", "color": "#9e9e9e", "strikethrough": true, "underline": false, "backgroundColor": "transparent", "bold": false, "italic": false },
+        { "tag": "!", "color": "#db3498", "strikethrough": false, "underline": false, "backgroundColor": "transparent", "bold": false, "italic": false },
+        { "tag": "@", "color": "#db7734", "strikethrough": false, "underline": false, "backgroundColor": "transparent", "bold": false, "italic": false },
+        { "tag": "#", "color": "#c37998", "strikethrough": false, "underline": false, "backgroundColor": "transparent", "bold": false, "italic": false },
+        { "tag": "$", "color": "#d5db34", "strikethrough": false, "underline": false, "backgroundColor": "transparent", "bold": false, "italic": false },
+        { "tag": "%", "color": "#98db34", "strikethrough": false, "underline": false, "backgroundColor": "transparent", "bold": false, "italic": false },
+        { "tag": "^", "color": "#34d5db", "strikethrough": false, "underline": false, "backgroundColor": "transparent", "bold": false, "italic": false },
+        { "tag": "&", "color": "#3498DB", "strikethrough": false, "underline": false, "backgroundColor": "transparent", "bold": false, "italic": false },
+        { "tag": "*", "color": "#7672e6", "strikethrough": false, "underline": false, "backgroundColor": "transparent", "bold": false, "italic": false },
+        { "tag": "-", "color": "#34db77", "strikethrough": false, "underline": false, "backgroundColor": "transparent", "bold": false, "italic": false },
+        { "tag": "?", "color": "#3498DB", "strikethrough": false, "underline": false, "backgroundColor": "transparent", "bold": false, "italic": false },
+    ],
+}

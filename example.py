@@ -1,7 +1,8 @@
 from util import util
 from bls import bls, utils
-from ecdsa import ecdsa
-from ed25519 import ed25519
+from ethereum_account import ethereum_account
+from bitcoin_account import bitcoin_account
+from solana_account import solana_account
 
 # ! [COMMON] Generate multiple private and public key pairs
 seed1: bytes = util.create_random(32)
@@ -27,53 +28,99 @@ print('[BLS] [PRIVATE KEY] Public Key 1:', utils.export_pk(bls_pk1_from_priv))
 print('[BLS] [PRIVATE KEY] Private Key 2:', utils.export_sk(bls_sk2_from_priv))
 print('[BLS] [PRIVATE KEY] Public Key 2:', utils.export_pk(bls_pk2_from_priv))
 
-# # [ECDSA] Generate ecdsa private keys and public keys
-ecdsa_sk1, ecdsa_pk1 = ecdsa.keypair_gen_seed(seed1)
-ecdsa_sk2, ecdsa_pk2 = ecdsa.keypair_gen_seed(seed2)
+# # [ETHEREUM] generate ethereum_account keys and address from the seed
+ethereum_account_private_key1, ethereum_account_public_key1, ethereum_account_address1 = ethereum_account.keypair_gen_seed(seed1)
+ethereum_account_private_key2, ethereum_account_public_key2, ethereum_account_address2 = ethereum_account.keypair_gen_seed(seed2)
 
-# # [ECDSA] [DISPLAY] Export ecdsa keys for display purposes
-ecdsa_sk1_hex, ecdsa_pk1_hex = ecdsa.export_keys(ecdsa_sk1, ecdsa_pk1)
-ecdsa_sk2_hex, ecdsa_pk2_hex = ecdsa.export_keys(ecdsa_sk2, ecdsa_pk2)
-print('[ECDSA] [SEED] Private Key 1:', ecdsa_sk1_hex)
-print('[ECDSA] [SEED] Public Key 1:', ecdsa_pk1_hex)
-print('[ECDSA] [SEED] Private Key 2:', ecdsa_sk2_hex)
-print('[ECDSA] [SEED] Public Key 2:', ecdsa_pk2_hex)
+# # [ETHEREUM] generate ethereum_account keys and address from the private key
+ethereum_account_private_key3, ethereum_account_public_key3, ethereum_account_address3 = ethereum_account.keypair_gen_privatekey(ethereum_account_private_key1)
+ethereum_account_private_key4, ethereum_account_public_key4, ethereum_account_address4 = ethereum_account.keypair_gen_privatekey(ethereum_account_private_key2)
 
-# # [ECDSA] Import the private keys
-ecdsa_sk1_from_priv, ecdsa_pk1_from_priv = ecdsa.keypair_gen_privatekey(ecdsa_sk1_hex)
-ecdsa_sk2_from_priv, ecdsa_pk2_from_priv = ecdsa.keypair_gen_privatekey(ecdsa_sk2_hex)
+# # [ETHEREUM] print the ethereum_account keys and address
+print(f'''
+[ETHEREUM-ACCOUNT]
+SEED-1
+    - private key 1: {ethereum_account_private_key1}
+    - public key 1: {ethereum_account_public_key1}
+    - address 1: {ethereum_account_address1}
+SEED-2
+    - private key 2: {ethereum_account_private_key2}
+    - public key 2: {ethereum_account_public_key2}
+    - address 2: {ethereum_account_address2}
+PRIVATE KEY-1
+    - private key 3: {ethereum_account_private_key3}
+    - public key 3: {ethereum_account_public_key3}
+    - address 3: {ethereum_account_address3}
+PRIVATE KEY-2
+    - private key 4: {ethereum_account_private_key4}
+    - public key 4: {ethereum_account_public_key4}
+    - address 4: {ethereum_account_address4}
 
-# # [ECDSA] [DISPLAY] Export ecdsa keys for display purposes
-ecdsa_sk1_from_priv_hex, ecdsa_pk1_from_priv_hex = ecdsa.export_keys(ecdsa_sk1_from_priv, ecdsa_pk1_from_priv)
-ecdsa_sk2_from_priv_hex, ecdsa_pk2_from_priv_hex = ecdsa.export_keys(ecdsa_sk2_from_priv, ecdsa_pk2_from_priv)
-print('[ECDSA] [PRIVATE KEY] Private Key 1:', ecdsa_sk1_from_priv_hex)
-print('[ECDSA] [PRIVATE KEY] Public Key 1:', ecdsa_pk1_from_priv_hex)
-print('[ECDSA] [PRIVATE KEY] Private Key 2:', ecdsa_sk2_from_priv_hex)
-print('[ECDSA] [PRIVATE KEY] Public Key 2:', ecdsa_pk2_from_priv_hex)
+------------------------------------------------------------''')
 
-# $ [ED25519] Generate ed25519 private keys and public keys
-ed25519_sk1, ed25519_pk1 = ed25519.keypair_gen_seed(seed1)
-ed25519_sk2, ed25519_pk2 = ed25519.keypair_gen_seed(seed2)
+# # [BITCOIN] generate bitcoin_account keys and address from the seed
+bitcoin_account_private_key1, bitcoin_account_wif_private_key1, bitcoin_account_public_key1, bitcoin_account_address1 = bitcoin_account.keypair_gen_seed(seed1)
+bitcoin_account_private_key2, bitcoin_account_wif_private_key2, bitcoin_account_public_key2, bitcoin_account_address2 = bitcoin_account.keypair_gen_seed(seed2)
 
-# $ [ED25519] [DISPLAY] Export ed25519 keys for display purposes
-ed25519_sk1_hex, ed25519_pk1_hex = ed25519.export_keys(ed25519_sk1, ed25519_pk1)
-ed25519_sk2_hex, ed25519_pk2_hex = ed25519.export_keys(ed25519_sk2, ed25519_pk2)
-print('[ED25519] [SEED] Private Key 1:', ed25519_sk1_hex)
-print('[ED25519] [SEED] Public Key 1:', ed25519_pk1_hex)
-print('[ED25519] [SEED] Private Key 2:', ed25519_sk2_hex)
-print('[ED25519] [SEED] Public Key 2:', ed25519_pk2_hex)
+# # [BITCOIN] generate bitcoin_account keys and address from the private key
+bitcoin_account_private_key3, bitcoin_account_wif_private_key3, bitcoin_account_public_key3, bitcoin_account_address3 = bitcoin_account.keypair_gen_privatekey(False, bitcoin_account_private_key1)
+bitcoin_account_private_key4, bitcoin_account_wif_private_key4, bitcoin_account_public_key4, bitcoin_account_address4 = bitcoin_account.keypair_gen_privatekey(False, bitcoin_account_private_key2)
 
-# $ [ED25519] Import the private keys
-ed25519_sk1_from_priv, ed25519_pk1_from_priv = ed25519.keypair_gen_privatekey(ed25519_sk1_hex)
-ed25519_sk2_from_priv, ed25519_pk2_from_priv = ed25519.keypair_gen_privatekey(ed25519_sk2_hex)
+# # [BITCOIN] print the bitcoin_account keys and address
+print(f'''
+[BITCOIN-ACCOUNT]
+SEED-1
+    - private key 1: {bitcoin_account_private_key1}
+    - wif private key 1: {bitcoin_account_wif_private_key1}
+    - public key 1: {bitcoin_account_public_key1}
+    - address 1: {bitcoin_account_address1}
+SEED-2
+    - private key 2: {bitcoin_account_private_key2}
+    - wif private key 2: {bitcoin_account_wif_private_key2}
+    - public key 2: {bitcoin_account_public_key2}
+    - address 2: {bitcoin_account_address2}
+PRIVATE KEY-1
+    - private key 3: {bitcoin_account_private_key3}
+    - wif private key 3: {bitcoin_account_wif_private_key3}
+    - public key 3: {bitcoin_account_public_key3}
+    - address 3: {bitcoin_account_address3}
+PRIVATE KEY-2
+    - private key 4: {bitcoin_account_private_key4}
+    - wif private key 4: {bitcoin_account_wif_private_key4}
+    - public key 4: {bitcoin_account_public_key4}
+    - address 4: {bitcoin_account_address4}
 
-# $ [ED25519] [DISPLAY] Export ed25519 keys for display purposes
-ed25519_sk1_from_priv_hex, ed25519_pk1_from_priv_hex = ed25519.export_keys(ed25519_sk1_from_priv, ed25519_pk1_from_priv)
-ed25519_sk2_from_priv_hex, ed25519_pk2_from_priv_hex = ed25519.export_keys(ed25519_sk2_from_priv, ed25519_pk2_from_priv)
-print('[ED25519] [PRIVATE KEY] Private Key 1:', ed25519_sk1_from_priv_hex)
-print('[ED25519] [PRIVATE KEY] Public Key 1:', ed25519_pk1_from_priv_hex)
-print('[ED25519] [PRIVATE KEY] Private Key 2:', ed25519_sk2_from_priv_hex)
-print('[ED25519] [PRIVATE KEY] Public Key 2:', ed25519_pk2_from_priv_hex)
+------------------------------------------------------------''')
+
+# # [SOLANA] generate solana_account keys and address from the seed
+solana_account_private_key1, solana_account_public_key1, solana_account_address1 = solana_account.keypair_gen_seed(seed1)
+solana_account_private_key2, solana_account_public_key2, solana_account_address2 = solana_account.keypair_gen_seed(seed2)
+
+# # [SOLANA] generate solana_account keys and address from the private key
+solana_account_private_key3, solana_account_public_key3, solana_account_address3 = solana_account.keypair_gen_privatekey(solana_account_private_key1)
+solana_account_private_key4, solana_account_public_key4, solana_account_address4 = solana_account.keypair_gen_privatekey(solana_account_private_key2)
+
+# # [SOLANA] print the solana_account keys and address
+print(f'''
+[SOLANA-ACCOUNT]
+SEED-1
+    - private key 1: {solana_account_private_key1}
+    - public key 1: {solana_account_public_key1}
+    - address 1: {solana_account_address1}
+SEED-2
+    - private key 2: {solana_account_private_key2}
+    - public key 2: {solana_account_public_key2}
+    - address 2: {solana_account_address2}
+PRIVATE KEY-1
+    - private key 3: {solana_account_private_key3}
+    - public key 3: {solana_account_public_key3}
+    - address 3: {solana_account_address3}
+PRIVATE KEY-2
+    - private key 4: {solana_account_private_key4}
+    - public key 4: {solana_account_public_key4}
+    - address 4: {solana_account_address4}
+
+------------------------------------------------------------''')
 
 # @ [BLS] Generate a message to sign
 message = 'Hello, this is a test message'
