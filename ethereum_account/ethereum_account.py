@@ -3,7 +3,7 @@ from util import hash
 import hashlib
 
 # ! create keypair from seed
-def keypair_gen_seed(seed: bytes):
+def keypair_gen_seed(seed: bytes) -> (str, str, str):
     # $ 1. create private key
     private_key_bytes = hashlib.sha256(seed).digest()
     private_key = SigningKey.from_string(private_key_bytes, curve=SECP256k1).to_string().hex()
@@ -18,7 +18,7 @@ def keypair_gen_seed(seed: bytes):
     return private_key, public_key, ethereum_address
 
 # ! create keypair from private key
-def keypair_gen_privatekey(encoded_key: str):
+def keypair_gen_privatekey(encoded_key: str) -> (str, str, str):
     # $ 1. decode the private key
     private_key_bytes = bytes.fromhex(encoded_key)
     private_key = SigningKey.from_string(private_key_bytes, curve=SECP256k1).to_string().hex()
@@ -33,7 +33,7 @@ def keypair_gen_privatekey(encoded_key: str):
     return private_key, public_key, ethereum_address
 
 # ! convert public key to ethereum address
-def convert_to_ethereum_address(public_key_bytes: bytes):
+def convert_to_ethereum_address(public_key_bytes: bytes) -> str:
     keccak256 = hash.Keccak256()
     keccak256.update(public_key_bytes)
     public_key_hash = keccak256.digest()
