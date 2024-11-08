@@ -4,29 +4,35 @@ from ethereum_account import ethereum_account
 from bitcoin_account import bitcoin_account
 from solana_account import solana_account
 
-# ! [COMMON] Generate multiple private and public key pairs
+# ! [COMMON] generate random seeds
 seed1: bytes = util.create_random(32)
 seed2: bytes = util.create_random(32)
 
-# @ [BLS] Generate bls private keys and public keys
-bls_sk1, bls_pk1 = bls.keypair_gen_seed(seed1)
-bls_sk2, bls_pk2 = bls.keypair_gen_seed(seed2)
+# @ [BLS] generate bls keys from the seed
+bls_private_key1, bls_public_key1 = bls.keypair_gen_seed(seed1)
+bls_private_key2, bls_public_key2 = bls.keypair_gen_seed(seed2)
 
-# @ [BLS] [DISPLAY] Export keys for display purposes
-print('[BLS] [SEED] Private Key 1:', utils.export_sk(bls_sk1))
-print('[BLS] [SEED] Public Key 1:', utils.export_pk(bls_pk1))
-print('[BLS] [SEED] Private Key 2:', utils.export_sk(bls_sk2))
-print('[BLS] [SEED] Public Key 2:', utils.export_pk(bls_pk2))
+# @ [BLS] generate bls keys from the private key
+bls_private_key3, bls_public_key3 = bls.keypair_gen_privatekey(utils.export_sk(bls_private_key1))
+bls_private_key4, bls_public_key4 = bls.keypair_gen_privatekey(utils.export_sk(bls_private_key2))
 
-# @ [BLS] Import the private keys
-bls_sk1_from_priv, bls_pk1_from_priv = bls.keypair_gen_privatekey(utils.export_sk(bls_sk1))
-bls_sk2_from_priv, bls_pk2_from_priv = bls.keypair_gen_privatekey(utils.export_sk(bls_sk2))
+# @ [BLS] print the bls keys
+print(f'''
+[BLS]
+SEED-1
+    - private key 1: {utils.export_sk(bls_private_key1)}
+    - public key 1: {utils.export_pk(bls_public_key1)}
+SEED-2
+    - private key 2: {utils.export_sk(bls_private_key2)}
+    - public key 2: {utils.export_pk(bls_public_key2)}
+PRIVATE KEY-1
+    - private key 3: {utils.export_sk(bls_private_key3)}
+    - public key 3: {utils.export_pk(bls_public_key3)}
+PRIVATE KEY-2
+    - private key 4: {utils.export_sk(bls_private_key4)}
+    - public key 4: {utils.export_pk(bls_public_key4)}
 
-# @ [BLS] [DISPLAY] Export keys for display purposes
-print('[BLS] [PRIVATE KEY] Private Key 1:', utils.export_sk(bls_sk1_from_priv))
-print('[BLS] [PRIVATE KEY] Public Key 1:', utils.export_pk(bls_pk1_from_priv))
-print('[BLS] [PRIVATE KEY] Private Key 2:', utils.export_sk(bls_sk2_from_priv))
-print('[BLS] [PRIVATE KEY] Public Key 2:', utils.export_pk(bls_pk2_from_priv))
+------------------------------------------------------------''')
 
 # # [ETHEREUM] generate ethereum_account keys and address from the seed
 ethereum_account_private_key1, ethereum_account_public_key1, ethereum_account_address1 = ethereum_account.keypair_gen_seed(seed1)
@@ -120,21 +126,22 @@ PRIVATE KEY-2
     - public key 4: {solana_account_public_key4}
     - address 4: {solana_account_address4}
 
-------------------------------------------------------------''')
+------------------------------------------------------------
+''')
 
 # @ [BLS] Generate a message to sign
 message = 'Hello, this is a test message'
 
 # @ [BLS] Sign the message with each private key
-sig1 = bls.sign(bls_sk1, message)
-sig2 = bls.sign(bls_sk2, message)
+sig1 = bls.sign(bls_private_key1, message)
+sig2 = bls.sign(bls_private_key2, message)
 
 # @ [BLS] [DISPLAY] Export signatures for display purposes
 print('[BLS] Signature 1:', utils.export_sig(sig1))
 print('[BLS] Signature 2:', utils.export_sig(sig2))
 
 # @ [BLS] Generate an aggregated public key and signature
-agg_pub_key = bls.aggregateKey([bls_pk1, bls_pk2])
+agg_pub_key = bls.aggregateKey([bls_public_key1, bls_public_key2])
 agg_signature = bls.aggregateSig([sig1, sig2])
 
 # @ [BLS] [DISPLAY] Export the aggregated public key and signature for display purposes
