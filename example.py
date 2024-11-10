@@ -35,12 +35,12 @@ PRIVATE KEY-2
 ------------------------------------------------------------''')
 
 # # [ETHEREUM] generate ethereum_account keys and address from the seed
-ethereum_account_private_key1: str, ethereum_account_public_key1: str, ethereum_account_address1: str = ethereum_account.keypair_gen_seed(seed1)
-ethereum_account_private_key2: str, ethereum_account_public_key2: str, ethereum_account_address2: str = ethereum_account.keypair_gen_seed(seed2)
+ethereum_account_private_key1, ethereum_account_public_key1, ethereum_account_address1 = ethereum_account.keypair_gen_seed(seed1)
+ethereum_account_private_key2, ethereum_account_public_key2, ethereum_account_address2 = ethereum_account.keypair_gen_seed(seed2)
 
 # # [ETHEREUM] generate ethereum_account keys and address from the private key
-ethereum_account_private_key3: str, ethereum_account_public_key3: str, ethereum_account_address3: str = ethereum_account.keypair_gen_privatekey(ethereum_account_private_key1)
-ethereum_account_private_key4: str, ethereum_account_public_key4: str, ethereum_account_address4: str = ethereum_account.keypair_gen_privatekey(ethereum_account_private_key2)
+ethereum_account_private_key3, ethereum_account_public_key3, ethereum_account_address3 = ethereum_account.keypair_gen_privatekey(ethereum_account_private_key1)
+ethereum_account_private_key4, ethereum_account_public_key4, ethereum_account_address4 = ethereum_account.keypair_gen_privatekey(ethereum_account_private_key2)
 
 # # [ETHEREUM] print the ethereum_account keys and address
 print(f'''
@@ -65,12 +65,12 @@ PRIVATE KEY-2
 ------------------------------------------------------------''')
 
 # # [BITCOIN] generate bitcoin_account keys and address from the seed
-bitcoin_account_private_key1: str, bitcoin_account_wif_private_key1: str, bitcoin_account_public_key1: str, bitcoin_account_address1: str = bitcoin_account.keypair_gen_seed(seed1)
-bitcoin_account_private_key2: str, bitcoin_account_wif_private_key2: str, bitcoin_account_public_key2: str, bitcoin_account_address2: str = bitcoin_account.keypair_gen_seed(seed2)
+bitcoin_account_private_key1, bitcoin_account_wif_private_key1, bitcoin_account_public_key1, bitcoin_account_address1 = bitcoin_account.keypair_gen_seed(seed1)
+bitcoin_account_private_key2, bitcoin_account_wif_private_key2, bitcoin_account_public_key2, bitcoin_account_address2 = bitcoin_account.keypair_gen_seed(seed2)
 
 # # [BITCOIN] generate bitcoin_account keys and address from the private key
-bitcoin_account_private_key3: str, bitcoin_account_wif_private_key3: str, bitcoin_account_public_key3: str, bitcoin_account_address3: str = bitcoin_account.keypair_gen_privatekey(False, bitcoin_account_private_key1)
-bitcoin_account_private_key4: str, bitcoin_account_wif_private_key4: str, bitcoin_account_public_key4: str, bitcoin_account_address4: str = bitcoin_account.keypair_gen_privatekey(False, bitcoin_account_private_key2)
+bitcoin_account_private_key3, bitcoin_account_wif_private_key3, bitcoin_account_public_key3, bitcoin_account_address3 = bitcoin_account.keypair_gen_privatekey(False, bitcoin_account_private_key1)
+bitcoin_account_private_key4, bitcoin_account_wif_private_key4, bitcoin_account_public_key4, bitcoin_account_address4 = bitcoin_account.keypair_gen_privatekey(False, bitcoin_account_private_key2)
 
 # # [BITCOIN] print the bitcoin_account keys and address
 print(f'''
@@ -99,12 +99,12 @@ PRIVATE KEY-2
 ------------------------------------------------------------''')
 
 # # [SOLANA] generate solana_account keys and address from the seed
-solana_account_private_key1: str, solana_account_public_key1: str, solana_account_address1: str = solana_account.keypair_gen_seed(seed1)
-solana_account_private_key2: str, solana_account_public_key2: str, solana_account_address2: str = solana_account.keypair_gen_seed(seed2)
+solana_account_private_key1, solana_account_public_key1, solana_account_address1 = solana_account.keypair_gen_seed(seed1)
+solana_account_private_key2, solana_account_public_key2, solana_account_address2 = solana_account.keypair_gen_seed(seed2)
 
 # # [SOLANA] generate solana_account keys and address from the private key
-solana_account_private_key3: str, solana_account_public_key3: str, solana_account_address3: str = solana_account.keypair_gen_privatekey(solana_account_private_key1)
-solana_account_private_key4: str, solana_account_public_key4: str, solana_account_address4: str = solana_account.keypair_gen_privatekey(solana_account_private_key2)
+solana_account_private_key3, solana_account_public_key3, solana_account_address3 = solana_account.keypair_gen_privatekey(solana_account_private_key1)
+solana_account_private_key4, solana_account_public_key4, solana_account_address4 = solana_account.keypair_gen_privatekey(solana_account_private_key2)
 
 # # [SOLANA] print the solana_account keys and address
 print(f'''

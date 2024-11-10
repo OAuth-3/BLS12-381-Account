@@ -2,6 +2,7 @@ from .module import SigningKey, SECP256k1
 from util import hash
 from binascii import unhexlify, hexlify
 import hashlib
+from util.ripemd160 import RIPEMD160
 
 # ! create keypair from seed
 def keypair_gen_seed(seed: bytes) -> (str, str, str, str):
@@ -50,9 +51,10 @@ def convert_to_wif_private_key(private_key_bytes: bytes) -> str:
 # ! convert public key to bitcoin address
 def convert_to_bitcoin_address(public_key_bytes: bytes) -> str:
     sha256 = hashlib.sha256(b'\x04' + public_key_bytes).digest()
-    ripemd160 = hashlib.new('ripemd160')
-    ripemd160.update(sha256)
-    public_key_hash = ripemd160.digest()
+    ripemd160_hash = RIPEMD160()
+    ripemd160_hash.update(sha256)
+    public_key_hash = ripemd160_hash.digest()
+    
     public_key_hash_with_network = b'\x00' + public_key_hash
     checksum = hashlib.sha256(hashlib.sha256(public_key_hash_with_network).digest()).digest()[:4]
     binary_address = public_key_hash_with_network + checksum
