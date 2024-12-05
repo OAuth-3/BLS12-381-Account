@@ -1,4 +1,4 @@
-from .module.ed25519_oop import SigningKey, VerifyingKey
+from .module.core.ed25519_oop import SigningKey, VerifyingKey
 from util import hash
 
 # ! create keypair from seed

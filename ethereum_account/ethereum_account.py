@@ -1,4 +1,5 @@
-from .module import SigningKey, SECP256k1
+from .module.keys.keys import SigningKey
+from .module.curves.curves import SECP256k1
 from util import hash
 import hashlib
 

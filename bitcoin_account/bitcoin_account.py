@@ -1,7 +1,8 @@
-from .module import SigningKey, SECP256k1
-from util import hash
-from binascii import unhexlify, hexlify
 import hashlib
+from binascii import unhexlify, hexlify
+from .module.keys.keys import SigningKey
+from .module.curves.curves import SECP256k1
+from util import hash
 from util.ripemd160 import RIPEMD160
 
 # ! create keypair from seed
